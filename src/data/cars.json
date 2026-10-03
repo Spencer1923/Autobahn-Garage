@@ -1,0 +1,15 @@
+[
+  { "id": "1",  "make": "Mercedes-AMG",      "model": "C63 S",           "year": 2020, "price": 78900,  "mileage": 41000, "image": "/cars/c63.jpg" },
+  { "id": "2",  "make": "Mercedes-Benz",     "model": "G63 AMG",         "year": 2022, "price": 245000, "mileage": 28000, "image": "/cars/g63.jpg" },
+  { "id": "3",  "make": "BMW",               "model": "M4 Competition",  "year": 2022, "price": 92500,  "mileage": 24000, "image": "/cars/m4.jpg" },
+  { "id": "4",  "make": "BMW",               "model": "M3 Competition",  "year": 2023, "price": 105900, "mileage": 18000, "image": "/cars/m3.jpg" },
+  { "id": "5",  "make": "BMW",               "model": "M5 Competition",  "year": 2021, "price": 119900, "mileage": 32000, "image": "/cars/m5.jpg" },
+  { "id": "6",  "make": "Lamborghini",       "model": "Urus",            "year": 2022, "price": 285000, "mileage": 15000, "image": "/cars/urus.jpg" },
+  { "id": "7",  "make": "Audi",              "model": "RS Q8",           "year": 2022, "price": 158000, "mileage": 22000, "image": "/cars/rsq8.jpg" },
+  { "id": "8",  "make": "Audi",              "model": "Q8",              "year": 2021, "price": 62900,  "mileage": 45000, "image": "/cars/q8.jpg" },
+  { "id": "9",  "make": "Porsche",           "model": "Cayenne",         "year": 2020, "price": 68900,  "mileage": 52000, "image": "/cars/cayenne.jpg" },
+  { "id": "10", "make": "Porsche",           "model": "Cayenne GTS",     "year": 2022, "price": 124900, "mileage": 26000, "image": "/cars/cayenne-gts.jpg" },
+  { "id": "11", "make": "Mercedes-Maybach",  "model": "GLS 600",         "year": 2023, "price": 215000, "mileage": 12000, "image": "/cars/gls600.jpg" },
+  { "id": "12", "make": "Mercedes-AMG",      "model": "GT R",            "year": 2020, "price": 235000, "mileage": 9000,  "image": "/cars/gtr.jpg" },
+  { "id": "13", "make": "Land Rover",        "model": "Range Rover SV",  "year": 2024, "price": 285000, "mileage": 8000,  "image": "/cars/range-rover-sv.jpg" }
+]
