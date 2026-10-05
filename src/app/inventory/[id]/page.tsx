@@ -9,7 +9,7 @@ export default async function CarPage({ params }: { params: Promise<{ id: string
 
   return (
     <main className="mx-auto max-w-3xl p-6">
-      <img src={car.image} alt={car.model} className="w-full rounded" />
+      <img src={car.image} alt={car.model} className="aspect-[3/2] w-full rounded object-cover" />
       <h1 className="mt-4 text-3xl font-bold">{car.year} {car.make} {car.model}</h1>
       <p className="text-xl">${car.price.toLocaleString()}</p>
       <p>{car.mileage.toLocaleString()} km</p>
