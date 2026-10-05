@@ -8,6 +8,8 @@ export default function CarCard({ car }: { car: Car }) {
       <img src={car.image} alt={`${car.make} ${car.model}`} className="h-40 w-full rounded object-cover" />
       <h2 className="mt-2 font-semibold">{car.year} {car.make} {car.model}</h2>
       <p>${car.price.toLocaleString()}</p>
+      {/* Quick spec line: power and body style */}
+      <p className="text-sm font-medium text-gray-700">{car.hp} hp · {car.body}</p>
       <p className="text-sm text-gray-500">{car.mileage.toLocaleString()} km</p>
     </Link>
   );
