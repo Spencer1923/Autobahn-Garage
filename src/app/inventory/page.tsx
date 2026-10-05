@@ -2,11 +2,7 @@ import CarCard from "@/components/CarCard";
 import { getCars, getMakes, getBodies } from "@/lib/cars";
 
 // In recent Next.js versions, searchParams is a Promise, so we await it
-export default async function InventoryPage({
-  searchParams,
-}: {
-  searchParams: Promise<Record<string, string | undefined>>;
-}) {
+export default async function InventoryPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const p = await searchParams;
 
   // URL values are always strings; convert to numbers (or undefined if blank)
@@ -23,7 +19,7 @@ export default async function InventoryPage({
     sort: p.sort,
   });
 
-  const input = "rounded border border-brand-gray/30 bg-brand-black p-2 text-white placeholder:text-brand-gray focus:border-brand-cyan focus:outline-none";
+  const input = "rounded border border-brand-gray/30 bg-background p-2 text-foreground placeholder:text-muted focus:border-brand-cyan focus:outline-none";
 
   return (
     <main className="mx-auto max-w-6xl p-6">
@@ -31,13 +27,17 @@ export default async function InventoryPage({
       <form method="get" className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
         <select name="make" defaultValue={p.make ?? ""} className={input}>
           <option value="">All makes</option>
-          {getMakes().map((m) => <option key={m}>{m}</option>)}
+          {getMakes().map((m) => (
+            <option key={m}>{m}</option>
+          ))}
         </select>
         <input name="model" placeholder="Model" defaultValue={p.model} className={input} />
-         {/* Body type filter */}
+        {/* Body type filter */}
         <select name="body" defaultValue={p.body ?? ""} className={input}>
           <option value="">All body types</option>
-          {getBodies().map((b) => <option key={b}>{b}</option>)}
+          {getBodies().map((b) => (
+            <option key={b}>{b}</option>
+          ))}
         </select>
 
         {/* Sort order: value is what goes in the URL, text is what users see */}
@@ -58,7 +58,9 @@ export default async function InventoryPage({
 
       <p className="mb-4">{cars.length} cars found</p>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {cars.map((car) => <CarCard key={car.id} car={car} />)}
+        {cars.map((car, i) => (
+          <CarCard key={car.id} car={car} index={i} />
+        ))}
       </div>
     </main>
   );

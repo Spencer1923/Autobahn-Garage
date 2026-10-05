@@ -1,8 +1,13 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
+/* Light mode values */
 :root {
-  --background: #050505;
-  --foreground: #ffffff;
+  --background: #ffffff;
+  --foreground: #050505;
+  --muted: #5b5c60;      /* gray text, darker so it's readable on white */
+  --cyan-text: #0891a0;  /* cyan text, darker so it's readable on white */
+  --card: rgba(5, 5, 5, 0.04);
 }
 
 @theme {
@@ -12,15 +17,58 @@
   --color-brand-red: #FF1616;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-cyan-text: var(--cyan-text);
+  --color-card: var(--card);
 }
+
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dark mode values (applied when <html> has class="dark") */
+.dark {
+  --background: #050505;
+  --foreground: #ffffff;
+  --muted: #A6A7AB;
+  --cyan-text: #08D9EA;
+  --card: rgba(255, 255, 255, 0.05);
+}
+
+html { scroll-behavior: smooth; }
+
+/* Cyan highlight when selecting text */
+::selection { background: #08D9EA; color: #050505; }
+
+/* Slim scrollbar that turns cyan on hover */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: rgba(166, 167, 171, 0.35); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #08D9EA; }
+
+/* Elements slide up and fade in; "both" keeps them hidden during any delay */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 0.6s ease-out both; }
+
+/* Faint grid that fades out toward the edges */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(166, 167, 171, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(166, 167, 171, 0.1) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+/* Respect users who turn off animations in their OS settings */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

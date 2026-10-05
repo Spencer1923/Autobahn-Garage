@@ -21,7 +21,7 @@ export default function FinanceCalculator({ price }: { price: number }) {
   const money = (n: number) =>
     n.toLocaleString("en-CA", { style: "currency", currency: "CAD" });
 
-  const box = "rounded border border-brand-gray/30 bg-brand-black p-2 text-white placeholder:text-brand-gray focus:border-brand-cyan focus:outline-none";
+  const box = "rounded border border-brand-gray/30 bg-background p-2 text-foreground placeholder:text-muted focus:border-brand-cyan focus:outline-none";
 
   return (
     <div className="mt-8 rounded-lg border border-brand-gray/20 bg-white/5 p-4">
