@@ -16,7 +16,7 @@
   { "id": "14", "make": "Porsche", "model": "911 GT3 RS", "year": 2023, "price": 459000, "mileage": 6500, "image": "/cars/911-gt3-rs.jpg", "body": "Coupe" },
   { "id": "15", "make": "Porsche", "model": "911 Turbo S", "year": 2021, "price": 249900, "mileage": 14000, "image": "/cars/911-turbo-s.jpg", "body": "Coupe" },
   { "id": "16", "make": "Porsche", "model": "718 Cayman GT4 RS", "year": 2022, "price": 279000, "mileage": 5200, "image": "/cars/gt4-rs.jpg", "body": "Coupe" },
-  { "id": "17", "make": "Porsche", "model": "Taycan Turbo S", "year": 2021, "price": 134900, "mileage": 31000, "image": "/cars/taycan-turbo-s.jpg", "body": "Sedan" },
+  { "id": "17", "make": "Lamborghini", "model": "Huracán Tecnica", "year": 2023, "price": 329000, "mileage": 6000, "image": "/cars/huracan-tecnica.jpg", "body": "Coupe" },
   { "id": "18", "make": "Porsche", "model": "Panamera Turbo S", "year": 2022, "price": 159900, "mileage": 24000, "image": "/cars/panamera-turbo-s.jpg", "body": "Sedan" },
   { "id": "19", "make": "Porsche", "model": "Macan GTS", "year": 2022, "price": 82900, "mileage": 29000, "image": "/cars/macan-gts.jpg", "body": "SUV" },
   { "id": "20", "make": "Porsche", "model": "Cayenne Turbo GT", "year": 2022, "price": 189900, "mileage": 19000, "image": "/cars/cayenne-turbo-gt.jpg", "body": "SUV" },
@@ -36,18 +36,16 @@
   { "id": "31", "make": "BMW", "model": "X5 M Competition", "year": 2021, "price": 112900, "mileage": 34000, "image": "/cars/x5m.jpg", "body": "SUV" },
   { "id": "32", "make": "BMW", "model": "X6 M Competition", "year": 2022, "price": 124900, "mileage": 26000, "image": "/cars/x6m.jpg", "body": "SUV" },
   { "id": "33", "make": "BMW", "model": "M4 CSL", "year": 2023, "price": 215000, "mileage": 2800, "image": "/cars/m4-csl.jpg", "body": "Coupe" },
-  { "id": "34", "make": "BMW", "model": "XM", "year": 2024, "price": 179900, "mileage": 9500, "image": "/cars/xm.jpg", "body": "SUV" },
-  { "id": "35", "make": "BMW", "model": "M2", "year": 2024, "price": 84900, "mileage": 7000, "image": "/cars/m2.jpg", "body": "Coupe" },
+  { "id": "34", "make": "BMW", "model": "XM", "year": 2026, "price": 220000, "mileage": 900, "image": "/cars/xm.jpg", "body": "SUV" },
+  { "id": "35", "make": "BMW", "model": "M2", "year": 2026, "price": 93100, "mileage": 450, "image": "/cars/m2.jpg", "body": "Coupe" },
 
   { "id": "36", "make": "Bentley", "model": "Bentayga Speed", "year": 2022, "price": 229900, "mileage": 18000, "image": "/cars/bentayga-speed.jpg", "body": "SUV" },
   { "id": "37", "make": "Bentley", "model": "Continental GT Speed", "year": 2022, "price": 249900, "mileage": 14000, "image": "/cars/continental-gt-speed.jpg", "body": "Coupe" },
   { "id": "38", "make": "Rolls-Royce", "model": "Cullinan Black Badge", "year": 2022, "price": 459000, "mileage": 12000, "image": "/cars/cullinan-black-badge.jpg", "body": "SUV" },
-  { "id": "39", "make": "Aston Martin", "model": "DBX707", "year": 2023, "price": 259900, "mileage": 10000, "image": "/cars/dbx707.jpg", "body": "SUV" },
+  { "id": "39", "make": "Aston Martin", "model": "DBX707", "year": 2025, "price": 302100, "mileage": 1900, "image": "/cars/dbx707.jpg", "body": "SUV" },
 
-  { "id": "40", "make": "Maserati", "model": "MC20", "year": 2023, "price": 289000, "mileage": 5000, "image": "/cars/mc20.jpg", "body": "Coupe" },
-  { "id": "41", "make": "Ferrari", "model": "Purosangue", "year": 2024, "price": 599000, "mileage": 3500, "image": "/cars/purosangue.jpg", "body": "SUV" },
+  { "id": "41", "make": "Ferrari", "model": "Purosangue", "year": 2025, "price": 829000, "mileage": 300, "image": "/cars/purosangue.jpg", "body": "SUV" },
   { "id": "42", "make": "Ferrari", "model": "F8 Tributo", "year": 2021, "price": 489000, "mileage": 7500, "image": "/cars/f8.jpg", "body": "Coupe" },
   { "id": "43", "make": "Lamborghini", "model": "Huracán STO", "year": 2022, "price": 489000, "mileage": 4200, "image": "/cars/huracan-sto.jpg", "body": "Coupe" },
-  { "id": "44", "make": "McLaren", "model": "720S", "year": 2021, "price": 299900, "mileage": 12000, "image": "/cars/720s.jpg", "body": "Coupe" },
-  { "id": "45", "make": "Cadillac", "model": "CT5-V Blackwing", "year": 2022, "price": 119900, "mileage": 16000, "image": "/cars/ct5-v-blackwing.jpg", "body": "Sedan" }
+  { "id": "44", "make": "McLaren", "model": "720S", "year": 2021, "price": 299900, "mileage": 12000, "image": "/cars/720s.jpg", "body": "Coupe" }
 ]
