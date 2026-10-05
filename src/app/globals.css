@@ -23,13 +23,14 @@
   --color-muted: var(--muted);
   --color-cyan-text: var(--cyan-text);
   --color-card: var(--card);
+  --font-display: var(--font-syncopate), sans-serif;
 }
 
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 /* Dark mode values (applied when <html> has class="dark") */

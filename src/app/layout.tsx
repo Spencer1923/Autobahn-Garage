@@ -4,15 +4,11 @@ import "./globals.css";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { Inter, Syncopate } from "next/font/google";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// variable: creates a CSS variable we can use in Tailwind
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const syncopate = Syncopate({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-syncopate" });
 
 export const metadata = {
   title: "Autobahn Garage",
@@ -21,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -29,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className={`${inter.variable} ${syncopate.variable} antialiased`}>
         {/* Header: logo on the left, nav link on the right */}
         <header className="sticky top-0 z-50 border-b border-brand-gray/20 bg-brand-black/80 px-6 py-4 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
@@ -73,8 +69,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </div>
             <div>
               <p className="mb-3 text-xs uppercase tracking-widest text-white">Contact</p>
-              <p className="text-sm">your@email.com</p>
-              <p className="text-sm">Your city, ON</p>
+              <p className="text-sm">spencersamra@gmail.com</p>
+              <p className="text-sm">Toronto, ON</p>
             </div>
           </div>
           <div className="border-t border-brand-gray/20 py-4 text-center text-xs">© {new Date().getFullYear()} Autobahn Garage. All rights reserved.</div>

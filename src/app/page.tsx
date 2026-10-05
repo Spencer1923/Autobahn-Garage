@@ -5,6 +5,7 @@ import { getCars, getBodies, getMakes } from "@/lib/cars";
 export default function Home() {
   // "Featured" = the 6 most powerful cars (reuses our existing sort logic)
   const featured = getCars({ sort: "price-desc" }).slice(0, 6);
+  const hero = featured[0]; // top featured car, shown beside the headline
   const all = getCars();
   const stats = [
     { label: "Vehicles in stock", value: all.length },
@@ -21,30 +22,45 @@ export default function Home() {
   return (
     <main>
       {/* HERO */}
-      <section className="relative overflow-hidden px-6 py-28 text-center">
+      {/* HERO: text left, featured car right */}
+      <section className="relative overflow-hidden px-6 py-20 md:py-28">
         <div className="bg-grid pointer-events-none absolute inset-0" />
-        {/* Soft cyan glow behind the text (decorative only) */}
-        <div className="pointer-events-none absolute left-1/2 top-0 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-brand-cyan/20 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-brand-cyan/20 blur-3xl" />
 
-        <div className="fade-up relative mx-auto max-w-3xl">
-          <p className="mb-4 text-sm uppercase tracking-[0.3em] text-brand-cyan">Performance · Prestige · Precision</p>
-          <h1 className="text-5xl font-bold md:text-7xl">
-            Exceptional <span className="bg-linear-to-r from-cyan-text to-brand-cyan bg-clip-text text-transparent">Automobiles</span> driven by{" "}
-            <span className="bg-linear-to-r from-cyan-text to-brand-cyan bg-clip-text text-transparent">Prestige</span>
-          </h1>
-          {/* Small red accent bar */}
-          <span className="mx-auto mt-6 block h-1 w-14 bg-brand-red" />
-          <p className="mt-6 text-lg text-muted">Hand-selected German performance, super SUVs, and exotics.</p>
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
+          {/* LEFT: headline and buttons */}
+          <div className="fade-up">
+            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-cyan-text">Performance · Prestige · Precision</p>
+            <h1 className="font-display text-3xl font-bold uppercase leading-[1.15] md:text-4xl lg:text-5xl">
+              Exceptional <br /> Automobiles
+            </h1>
+            <p className="mt-4 font-display text-sm uppercase tracking-[0.35em] text-cyan-text md:text-base">Driven by the Exceptional</p>
+            <span className="mt-6 block h-1 w-14 bg-brand-red" />
+            <p className="mt-6 max-w-md text-lg text-muted">Performance cars and luxury SUVs, curated for the discerning driver.</p>
 
-          <div className="mt-10 flex justify-center gap-4">
-            <Link href="/inventory" className="rounded bg-brand-cyan px-6 py-3 font-semibold text-brand-black transition hover:brightness-110">
-              Browse inventory
-            </Link>
-            {/* Opens the visitor's email app; swap in your real email */}
-            <a href="mailto:your@email.com?subject=Book a viewing" className="rounded border border-brand-gray/40 px-6 py-3 transition hover:border-brand-cyan hover:text-cyan-text">
-              Book a viewing
-            </a>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link href="/inventory" className="rounded bg-brand-cyan px-6 py-3 font-semibold text-brand-black transition hover:brightness-110">
+                Browse inventory
+              </Link>
+              <a href="mailto:your@email.com?subject=Book a viewing" className="rounded border border-brand-gray/40 px-6 py-3 transition hover:border-brand-cyan hover:text-cyan-text">
+                Book a viewing
+              </a>
+            </div>
           </div>
+
+          {/* RIGHT: featured car, links to its page */}
+          <Link
+            href={`/inventory/${hero.id}`}
+            style={{ animationDelay: "150ms" }}
+            className="group fade-up relative block overflow-hidden rounded-2xl border border-brand-gray/20 shadow-[0_0_40px_rgba(8,217,234,0.15)]">
+            <img src={hero.image} alt={`${hero.make} ${hero.model}`} className="aspect-[3/2] w-full object-cover transition duration-700 group-hover:scale-105" />
+            <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/85 to-transparent p-5">
+              <p className="text-xs uppercase tracking-widest text-brand-cyan">Featured</p>
+              <p className="text-lg font-semibold text-white">
+                {hero.year} {hero.make} {hero.model}
+              </p>
+            </div>
+          </Link>
         </div>
       </section>
 
