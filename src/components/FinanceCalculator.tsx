@@ -21,10 +21,10 @@ export default function FinanceCalculator({ price }: { price: number }) {
   const money = (n: number) =>
     n.toLocaleString("en-CA", { style: "currency", currency: "CAD" });
 
-  const box = "w-full rounded border p-2";
+  const box = "rounded border border-brand-gray/30 bg-brand-black p-2 text-white placeholder:text-brand-gray focus:border-brand-cyan focus:outline-none";
 
   return (
-    <div className="mt-8 rounded-lg border p-4">
+    <div className="mt-8 rounded-lg border border-brand-gray/20 bg-white/5 p-4">
       <h2 className="mb-3 text-xl font-semibold">Financing Calculator</h2>
 
       <div className="grid gap-3 sm:grid-cols-3">
@@ -46,7 +46,7 @@ export default function FinanceCalculator({ price }: { price: number }) {
         </label>
       </div>
 
-      <p className="mt-4 text-2xl font-bold">{money(payment)} / month</p>
+      <p className="mt-4 text-2xl font-bold text-brand-cyan">{money(payment)} / month</p>
       <p className="text-sm text-gray-500">
         Total interest: {money(interest)} (includes {TAX * 100}% tax)
       </p>

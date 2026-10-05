@@ -23,7 +23,7 @@ export default async function InventoryPage({
     sort: p.sort,
   });
 
-  const input = "rounded border p-2";
+  const input = "rounded border border-brand-gray/30 bg-brand-black p-2 text-white placeholder:text-brand-gray focus:border-brand-cyan focus:outline-none";
 
   return (
     <main className="mx-auto max-w-6xl p-6">
@@ -53,7 +53,7 @@ export default async function InventoryPage({
         <input name="maxPrice" type="number" placeholder="Max price" defaultValue={p.maxPrice} className={input} />
         <input name="minYear" type="number" placeholder="Min year" defaultValue={p.minYear} className={input} />
         <input name="maxMileage" type="number" placeholder="Max km" defaultValue={p.maxMileage} className={input} />
-        <button className="rounded bg-blue-600 p-2 text-white">Search</button>
+        <button className="rounded bg-brand-cyan p-2 font-semibold text-brand-black transition hover:brightness-110">Search</button>
       </form>
 
       <p className="mb-4">{cars.length} cars found</p>
