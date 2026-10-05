@@ -1,15 +1,21 @@
 import Link from "next/link";
 import CarCard from "@/components/CarCard";
-import { getCars, getBodies } from "@/lib/cars";
+import { getCars, getBodies, getMakes } from "@/lib/cars";
 
 export default function Home() {
   // "Featured" = the 6 most powerful cars (reuses our existing sort logic)
-  const featured = getCars({ sort: "hp-desc" }).slice(0, 6);
+  const featured = getCars({ sort: "price-desc" }).slice(0, 6);
   const all = getCars();
   const stats = [
     { label: "Vehicles in stock", value: all.length },
     { label: "Brands", value: new Set(all.map((c) => c.make)).size },
     { label: "Newest model year", value: Math.max(...all.map((c) => c.year)) },
+  ];
+  // Edit these to match your real services
+  const perks = [
+    { n: "01", title: "Hand-selected inventory", text: "Every vehicle is chosen for condition, provenance, and presence." },
+    { n: "02", title: "Transparent pricing", text: "Clear pricing and a built-in financing calculator on every listing." },
+    { n: "03", title: "White-glove service", text: "One point of contact from first inquiry to delivery." },
   ];
 
   return (
@@ -34,9 +40,10 @@ export default function Home() {
             <Link href="/inventory" className="rounded bg-brand-cyan px-6 py-3 font-semibold text-brand-black transition hover:brightness-110">
               Browse inventory
             </Link>
-            <Link href="/inventory?sort=hp-desc" className="rounded border border-brand-gray/40 px-6 py-3 transition hover:border-brand-cyan hover:text-brand-cyan">
-              Most powerful
-            </Link>
+            {/* Opens the visitor's email app; swap in your real email */}
+            <a href="mailto:your@email.com?subject=Book a viewing" className="rounded border border-brand-gray/40 px-6 py-3 transition hover:border-brand-cyan hover:text-cyan-text">
+              Book a viewing
+            </a>
           </div>
         </div>
       </section>
@@ -49,6 +56,18 @@ export default function Home() {
             <p className="mt-1 text-xs uppercase tracking-widest text-muted">{s.label}</p>
           </div>
         ))}
+      </section>
+
+      {/* BRANDS */}
+      <section className="mx-auto mb-16 max-w-6xl px-6">
+        <p className="mb-6 text-center text-xs uppercase tracking-[0.3em] text-muted">Marques we carry</p>
+        <div className="flex flex-wrap justify-center gap-x-10 gap-y-4">
+          {getMakes().map((m) => (
+            <Link key={m} href={`/inventory?make=${encodeURIComponent(m)}`} className="text-lg font-semibold uppercase tracking-widest text-muted/70 transition hover:text-cyan-text">
+              {m}
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* BROWSE BY BODY TYPE: links use the filter URLs we already built */}
@@ -73,6 +92,19 @@ export default function Home() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((car, i) => (
             <CarCard key={car.id} car={car} index={i} />
+          ))}
+        </div>
+      </section>
+
+      {/* WHY US */}
+      <section className="mx-auto mt-24 max-w-6xl px-6">
+        <div className="grid gap-px overflow-hidden rounded-xl border border-brand-gray/20 bg-brand-gray/20 md:grid-cols-3">
+          {perks.map((p) => (
+            <div key={p.n} className="bg-background p-8">
+              <p className="text-sm font-bold text-cyan-text">{p.n}</p>
+              <h3 className="mt-3 text-lg font-semibold">{p.title}</h3>
+              <p className="mt-2 text-sm text-muted">{p.text}</p>
+            </div>
           ))}
         </div>
       </section>

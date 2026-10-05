@@ -9,42 +9,49 @@ export type Car = {
   price: number;
   mileage: number;
   image: string;
-  hp: number;     // horsepower, shown on the card
-  body: string;   // "SUV", "Coupe", "Sedan", "Wagon"
+  body: string; // "SUV", "Coupe", "Sedan", "Wagon"
 };
 
 // Every filter is optional (?) because the user may leave any blank
 export type Filters = {
   make?: string;
   model?: string;
-  body?: string;       // "SUV", "Coupe", etc.
+  body?: string; // "SUV", "Coupe", etc.
   minPrice?: number;
   maxPrice?: number;
   minYear?: number;
   maxMileage?: number;
-  sort?: string;       // e.g. "price-asc"
+  sort?: string; // e.g. "price-asc"
 };
 
 const cars: Car[] = carsData;
 
 export function getCars(f: Filters = {}): Car[] {
-  const results = cars.filter((car) =>
-    (!f.make || car.make.toLowerCase() === f.make.toLowerCase()) &&
-    (!f.model || car.model.toLowerCase().includes(f.model.toLowerCase())) &&
-    (!f.body || car.body === f.body) &&                      // NEW
-    (f.minPrice === undefined || car.price >= f.minPrice) &&
-    (f.maxPrice === undefined || car.price <= f.maxPrice) &&
-    (f.minYear === undefined || car.year >= f.minYear) &&
-    (f.maxMileage === undefined || car.mileage <= f.maxMileage)
+  const results = cars.filter(
+    (car) =>
+      (!f.make || car.make.toLowerCase() === f.make.toLowerCase()) &&
+      (!f.model || car.model.toLowerCase().includes(f.model.toLowerCase())) &&
+      (!f.body || car.body === f.body) && // NEW
+      (f.minPrice === undefined || car.price >= f.minPrice) &&
+      (f.maxPrice === undefined || car.price <= f.maxPrice) &&
+      (f.minYear === undefined || car.year >= f.minYear) &&
+      (f.maxMileage === undefined || car.mileage <= f.maxMileage),
   );
 
   // sort() compares two cars (a, b): negative = a first, positive = b first
   switch (f.sort) {
-    case "price-asc":   results.sort((a, b) => a.price - b.price); break;
-    case "price-desc":  results.sort((a, b) => b.price - a.price); break;
-    case "hp-desc":     results.sort((a, b) => b.hp - a.hp); break;
-    case "year-desc":   results.sort((a, b) => b.year - a.year); break;
-    case "mileage-asc": results.sort((a, b) => a.mileage - b.mileage); break;
+    case "price-asc":
+      results.sort((a, b) => a.price - b.price);
+      break;
+    case "price-desc":
+      results.sort((a, b) => b.price - a.price);
+      break;
+    case "year-desc":
+      results.sort((a, b) => b.year - a.year);
+      break;
+    case "mileage-asc":
+      results.sort((a, b) => a.mileage - b.mileage);
+      break;
   }
   return results;
 }
@@ -60,4 +67,14 @@ export function getMakes(): string[] {
 
 export function getBodies(): string[] {
   return [...new Set(cars.map((c) => c.body))].sort();
+}
+
+export function getSimilar(car: Car, count = 3): Car[] {
+  return (
+    cars
+      .filter((c) => c.id !== car.id && (c.make === car.make || c.body === car.body))
+      // smallest price difference first
+      .sort((a, b) => Math.abs(a.price - car.price) - Math.abs(b.price - car.price))
+      .slice(0, count)
+  );
 }

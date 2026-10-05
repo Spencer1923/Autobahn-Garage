@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
-import { getCarById } from "@/lib/cars";
 import FinanceCalculator from "@/components/FinanceCalculator";
 import Link from "next/link";
+import CarCard from "@/components/CarCard";
+import { getCarById, getSimilar } from "@/lib/cars";
 
 export default async function CarPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params; // the [id] from the URL
@@ -35,6 +36,13 @@ export default async function CarPage({ params }: { params: Promise<{ id: string
         Inquire about this car
       </a>
       <FinanceCalculator price={car.price} />
+
+      <h2 className="mb-4 mt-16 text-xl font-semibold">You may also like</h2>
+      <div className="grid gap-4 sm:grid-cols-3">
+        {getSimilar(car).map((c, i) => (
+          <CarCard key={c.id} car={c} index={i} />
+        ))}
+      </div>
     </main>
   );
 }

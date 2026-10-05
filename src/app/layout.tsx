@@ -16,17 +16,12 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Autobahn Garage",
-  description:
-    "Luxury pre-owned cars. Browse our inventory and calculate financing.",
+  description: "Luxury pre-owned cars. Browse our inventory and calculate financing.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -39,17 +34,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <header className="sticky top-0 z-50 border-b border-brand-gray/20 bg-brand-black/80 px-6 py-4 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
             <Link href="/">
-              <img
-                src="/logos/header-logo.svg"
-                alt="Autobahn Garage"
-                className="h-10 w-auto"
-              />
+              <img src="/logos/header-logo.svg" alt="Autobahn Garage" className="h-10 w-auto" />
             </Link>
             <div className="flex items-center gap-6">
-              <Link
-                href="/inventory"
-                className="text-brand-gray transition hover:text-brand-cyan"
-              >
+              <Link href="/inventory" className="text-brand-gray transition hover:text-brand-cyan">
                 Inventory
               </Link>
               <ThemeToggle />
@@ -57,13 +45,39 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
         </header>
         {children}
-        <footer className="mt-16 border-t border-brand-gray/20 bg-brand-black py-8 text-center text-sm text-brand-gray">
-          <img
-            src="/logos/full-logo.svg"
-            alt="Autobahn Garage"
-            className="mx-auto mb-3 h-16 w-auto"
-          />
-          © {new Date().getFullYear()} Autobahn Garage
+        <footer className="mt-24 border-t border-brand-gray/20 bg-brand-black text-brand-gray">
+          <div className="mx-auto grid max-w-6xl gap-8 px-6 py-12 md:grid-cols-3">
+            <div>
+              <img src="/logos/full-logo.svg" alt="Autobahn Garage" className="mb-3 h-16 w-auto" />
+              <p className="text-sm">Performance and prestige vehicles, hand-selected.</p>
+            </div>
+            <div>
+              <p className="mb-3 text-xs uppercase tracking-widest text-white">Explore</p>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <Link href="/inventory" className="hover:text-brand-cyan">
+                    Inventory
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/inventory?body=SUV" className="hover:text-brand-cyan">
+                    SUVs
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/inventory?body=Coupe" className="hover:text-brand-cyan">
+                    Coupes
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className="mb-3 text-xs uppercase tracking-widest text-white">Contact</p>
+              <p className="text-sm">your@email.com</p>
+              <p className="text-sm">Your city, ON</p>
+            </div>
+          </div>
+          <div className="border-t border-brand-gray/20 py-4 text-center text-xs">© {new Date().getFullYear()} Autobahn Garage. All rights reserved.</div>
         </footer>
       </body>
     </html>
