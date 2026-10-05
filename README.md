@@ -29,19 +29,11 @@ I designed and built everything from scratch: the data layer, the filtering logi
 
 | Home | Inventory |
 |:---:|:---:|
-| ![Home page](docs/screenshots/home.png) | ![Inventory with filters](docs/screenshots/inventory.png) |
+| ![Home page](docs/screenshots/home.jpg) | ![Inventory with filters](docs/screenshots/inventory.jpg) |
 
 | Car detail + financing calculator | Light mode |
 |:---:|:---:|
-| ![Car detail page](docs/screenshots/detail.png) | ![Light mode](docs/screenshots/light-mode.png) |
-
-<div align="center">
-
-**Mobile**
-
-<img src="docs/screenshots/mobile.png" alt="Mobile view" width="280" />
-
-</div>
+| ![Car detail page](docs/screenshots/detail.jpg) | ![Light mode](docs/screenshots/light-mode.jpg) |
 
 ---
 
