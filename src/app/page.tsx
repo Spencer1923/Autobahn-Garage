@@ -1,18 +1,31 @@
+"use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import CarCard from "@/components/CarCard";
 import { getCars, getBodies, getMakes } from "@/lib/cars";
 
 export default function Home() {
-  // "Featured" = the 6 most powerful cars (reuses our existing sort logic)
-  const featured = getCars({ sort: "price-desc" }).slice(0, 6);
-  const hero = featured[0]; // top featured car, shown beside the headline
   const all = getCars();
+
+  // Featured rotation
+  const featured = getCars({ sort: "price-desc" }).slice(0, 8);
+  const [featuredIndex, setFeaturedIndex] = useState(0);
+  const hero = featured[featuredIndex];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFeaturedIndex((current) => (current + 1) % featured.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [featured.length]);
+
   const stats = [
     { label: "Vehicles in stock", value: all.length },
     { label: "Brands", value: new Set(all.map((c) => c.make)).size },
     { label: "Newest model year", value: Math.max(...all.map((c) => c.year)) },
   ];
-  // Edit these to match your real services
+
   const perks = [
     { n: "01", title: "Hand-selected inventory", text: "Every vehicle is chosen for condition, provenance, and presence." },
     { n: "02", title: "Transparent pricing", text: "Clear pricing and a built-in financing calculator on every listing." },
@@ -48,17 +61,26 @@ export default function Home() {
             </div>
           </div>
 
-          {/* RIGHT: featured car, links to its page */}
+          {/* RIGHT: automatically rotating featured car */}
           <Link
             href={`/inventory/${hero.id}`}
+            key={hero.id}
             style={{ animationDelay: "150ms" }}
-            className="group fade-up relative block overflow-hidden rounded-2xl border border-brand-gray/20 shadow-[0_0_40px_rgba(8,217,234,0.15)]">
+            className="group relative block overflow-hidden rounded-2xl border border-brand-gray/20 shadow-[0_0_40px_rgba(8,217,234,0.15)]">
             <img src={hero.image} alt={`${hero.make} ${hero.model}`} className="aspect-[3/2] w-full object-cover transition duration-700 group-hover:scale-105" />
             <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/85 to-transparent p-5">
               <p className="text-xs uppercase tracking-widest text-brand-cyan">Featured</p>
               <p className="text-lg font-semibold text-white">
                 {hero.year} {hero.make} {hero.model}
               </p>
+              <p className="mt-1 text-sm text-white/70">
+                ${hero.price.toLocaleString()} · {hero.mileage.toLocaleString()} km
+              </p>
+            </div>
+            <div className="absolute right-4 top-4 flex gap-1.5">
+              {featured.map((_, i) => (
+                <span key={i} className={`h-1.5 rounded-full transition-all ${i === featuredIndex ? "w-6 bg-brand-cyan" : "w-1.5 bg-white/50"}`} />
+              ))}
             </div>
           </Link>
         </div>
