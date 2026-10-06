@@ -29,7 +29,7 @@ I designed and built everything from scratch: the data layer, the filtering logi
 
 | Home | Inventory |
 |:---:|:---:|
-| ![Home page](docs/screenshots/home.jpg) | ![Inventory with filters](docs/screenshots/inventory.jpg) |
+| ![Home page](docs/screenshots/home.jpg) | ![Inventory with filters](docs/screenshots/inventory.JPG) |
 
 | Car detail + financing calculator | Light mode |
 |:---:|:---:|
