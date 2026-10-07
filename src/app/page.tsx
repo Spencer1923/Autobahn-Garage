@@ -1,24 +1,12 @@
-"use client";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import CarCard from "@/components/CarCard";
 import { getCars, getBodies, getMakes } from "@/lib/cars";
+import HeroRotator from "@/components/HeroRotator";
 
 export default function Home() {
   const all = getCars();
 
-  // Featured rotation
   const featured = getCars({ sort: "price-desc" }).slice(0, 8);
-  const [featuredIndex, setFeaturedIndex] = useState(0);
-  const hero = featured[featuredIndex];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFeaturedIndex((current) => (current + 1) % featured.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [featured.length]);
 
   const stats = [
     { label: "Vehicles in stock", value: all.length },
@@ -34,7 +22,6 @@ export default function Home() {
 
   return (
     <main>
-      {/* HERO */}
       {/* HERO: text left, featured car right */}
       <section className="relative overflow-hidden px-6 py-20 md:py-28">
         <div className="bg-grid pointer-events-none absolute inset-0" />
@@ -62,27 +49,8 @@ export default function Home() {
           </div>
 
           {/* RIGHT: automatically rotating featured car */}
-          <Link
-            href={`/inventory/${hero.id}`}
-            key={hero.id}
-            style={{ animationDelay: "150ms" }}
-            className="group relative block overflow-hidden rounded-2xl border border-brand-gray/20 shadow-[0_0_40px_rgba(8,217,234,0.15)]">
-            <img src={hero.image} alt={`${hero.make} ${hero.model}`} className="aspect-[3/2] w-full object-cover transition duration-700 group-hover:scale-105" />
-            <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/85 to-transparent p-5">
-              <p className="text-xs uppercase tracking-widest text-brand-cyan">Featured</p>
-              <p className="text-lg font-semibold text-white">
-                {hero.year} {hero.make} {hero.model}
-              </p>
-              <p className="mt-1 text-sm text-white/70">
-                ${hero.price.toLocaleString()} · {hero.mileage.toLocaleString()} km
-              </p>
-            </div>
-            <div className="absolute right-4 top-4 flex gap-1.5">
-              {featured.map((_, i) => (
-                <span key={i} className={`h-1.5 rounded-full transition-all ${i === featuredIndex ? "w-6 bg-brand-cyan" : "w-1.5 bg-white/50"}`} />
-              ))}
-            </div>
-          </Link>
+          {/* RIGHT: rotating featured cars */}
+          <HeroRotator cars={featured} />
         </div>
       </section>
 
