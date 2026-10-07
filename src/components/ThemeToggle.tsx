@@ -1,18 +1,17 @@
 "use client";
+import { useTheme } from "next-themes";
 
 export default function ThemeToggle() {
-  function toggle() {
-    // classList.toggle returns true if "dark" was just added, false if removed
-    const isDark = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light"); // remember the choice
-  }
+  // resolvedTheme is "dark" or "light", even when following the device setting
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <button
-      onClick={toggle}
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       aria-label="Toggle light and dark mode"
-      className="rounded border border-brand-gray/30 px-3 py-1 text-sm text-brand-gray transition hover:border-brand-cyan hover:text-brand-cyan">
-      {/* In light mode show "Dark"; in dark mode show "Light" */}
+      className="rounded border border-brand-gray/30 px-3 py-1 text-sm text-brand-gray transition hover:border-brand-cyan hover:text-brand-cyan"
+    >
+      {/* CSS shows the right label, which avoids a flash on load */}
       <span className="dark:hidden">☾ Dark</span>
       <span className="hidden dark:inline">☀ Light</span>
     </button>

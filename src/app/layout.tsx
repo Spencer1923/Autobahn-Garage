@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
+import ThemeProvider from "@/components/ThemeProvider";
 
 import { Inter, Syncopate } from "next/font/google";
 
@@ -18,15 +19,9 @@ export const metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `try{if(localStorage.getItem("theme")!=="light")document.documentElement.classList.add("dark")}catch(e){}`,
-          }}
-        />
-      </head>
       <body className={`${inter.variable} ${syncopate.variable} antialiased`}>
         {/* Header: logo on the left, nav link on the right */}
+         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <header className="sticky top-0 z-50 border-b border-brand-gray/20 bg-brand-black/80 px-6 py-4 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
             <Link href="/">
@@ -75,6 +70,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
           <div className="border-t border-brand-gray/20 py-4 text-center text-xs">© {new Date().getFullYear()} Autobahn Garage. All rights reserved.</div>
         </footer>
+        </ThemeProvider>
       </body>
     </html>
   );
